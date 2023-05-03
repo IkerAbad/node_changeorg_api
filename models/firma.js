@@ -1,10 +1,8 @@
 'use strict'
-
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
 var FirmaSchema = Schema({
-    // _id: Schema.ObjectId,
+// _id: Schema.ObjectId,
     user: {
         type: mongoose.Types.ObjectId,
         ref: 'User',
@@ -17,5 +15,4 @@ var FirmaSchema = Schema({
     },
     created_at: String,
 });
-
 module.exports = mongoose.model('Firma', FirmaSchema);

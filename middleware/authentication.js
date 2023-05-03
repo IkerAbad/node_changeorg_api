@@ -2,7 +2,7 @@
 
 var jwt = require('jwt-simple');
 var moment = require('moment');
-var secret_salt = 'secret-password-sotial-nework';
+var secret_salt = process.env.JWT_SECRET || 'clave-de-ejemplo';
 
 exports.ensureAuth = function (req, res, next) {
     if(!req.headers.authorization) {
