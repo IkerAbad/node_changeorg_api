@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "519f6358-40f8-474b-af7f-c10596996a1d",
+		"name": "node_changeorg_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25241019"
+	},
+	"item": [
+		{
+			"name": "saveUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Iker,\r\n\"email\":\"iker@gmail.com\",\r\n\"password\":\"iker\"}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/api/saveUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"api",
+						"saveUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUsers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3800/api/getUsers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"api",
+						"getUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3800/api/getUser/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"api",
+						"getUser",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"iker@gmail.com\",\r\n    \"password\":\"iker\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateUser",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"iker1\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/api/updateUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"api",
+						"updateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteUser",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3800/api/deleteUser/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"api",
+						"deleteUser",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
