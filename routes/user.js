@@ -15,10 +15,10 @@ var md_auth = require('../middleware/authentication')
 api.get('/home', UserController.home);
 api.get('/pruebas', UserController.pruebas);
 api.post('/saveUser', UserController.saveUser);
-api.get('/getUsers/:page', UserController.getUsers);
+api.get('/getUsers/:page?', UserController.getUsers);
 //api.get('/users/:page?', md_auth.ensureAuth, UserController.getUsers);
 api.post('/login', UserController.login);
 api.get('/getUser', md_auth.ensureAuth, UserController.getUser);
-api.put('/updateUser', UserController.updateUser);
+api.put('/updateUser',  md_auth.ensureAuth, UserController.updateUser);
 api.delete('/deleteUser', md_auth.ensureAuth, UserController.deleteUser);
 module.exports = api;

@@ -33,24 +33,18 @@ function saveUser(req, res) {
                 email: user.email.toLowerCase()
             }
             ]
-        }).exec((err, users) => {
+        }).then((users) => {
             console.log(users);
-            if (err) {
-                res.status(500).send({
-                    message: 'Error en la petición'
-                });
-            }
             if (users && users.length >= 1) {
                 return res.status(400).send({
                     message: 'El usuario que intenta registrar ya existe'
                 });
             } else {
 //In case no duplicate users it will encrypt the password
-
                 bcrypt.genSalt(10, function(err, salt) {
                     bcrypt.hash( params.password, salt, function(err, hash) {
                         user.password=hash;
-                        user.save(function (err, userStored) {
+                        user.save().then((userStored)=> {
                                 if(err){
                                     return res.status(500).send({
                                         message: 'Error en la petición'
@@ -60,12 +54,20 @@ function saveUser(req, res) {
                                     message:"ok",
                                     user: userStored
                                 });
-                            });
+                            }).catch((error=>{
+                                res.status(500).send({
+                                    message: error.message
+                                });
+                            }));
                     });
                 });
 
             }
-        });
+        }).catch((error=>{
+            res.status(500).send({
+                message: error.message
+            });
+        }));
     } else {
 //without return if just one possible return
         res.status(200).send({
@@ -102,7 +104,7 @@ function getUsers(req, res) {
 }
 
 function getUser(req, res) {
-    const userId = req.params.userId; // Aquí se obtiene el ID del usuario a partir de los parámetros de la solicitud
+    const userId = req.user.sub; // Aquí se obtiene el ID del usuario a partir de los parámetros de la solicitud
     User.findById(userId)
         .then(user => {
             if (!user) {
@@ -126,12 +128,7 @@ function login(req,res) {
     var password = params.password;
     User.findOne({
         email: email
-    }, (err, user) => {
-        if (err) {
-            return res.status(500).send({
-                message: 'Error en la peticion de login'
-            });
-        }
+    }).then((user) => {
         if(user){
             bcrypt.compare(password, user.password, (err, check) => {
                 if(check){
@@ -150,7 +147,11 @@ function login(req,res) {
                 message: 'El usuario no se ha podido identificar'
             });
         }
-    });
+    }).catch((error =>{
+        res.status(500).send({
+            message: error.message
+        });
+    }));
 }
 
 function updateUser(req, res) {
@@ -159,37 +160,30 @@ function updateUser(req, res) {
     delete update.password;
     User.findByIdAndUpdate(userId, update, {
         new: true
-    }, (error, userUpdated) => {
-        if (error) {
-            return res.status(500).send({
-                message: 'Error en la petición'
-            });
-        }
-        if (!userUpdated) {
-            return res.status(404).send({
-                message: 'No se ha podido actualizar el usuario'
-            });
-        }
+    }).then((userUpdated) => {
         return res.status(200).send({
             user: userUpdated
         });
-    });
+    }).catch((error =>{
+        res.status(500).send({
+            message: error.message
+        });
+    }));
 }
 
 function deleteUser(req, res) {
     var userId = req.user.sub;
-    User.find({
-        '_id': userId
-    }).remove((err) => {
-        if (err) {
-            return res.status(500).send({
-                message: 'Error al borrar el usuario'
-            });
-        }
+    User.findByIdAndDelete(
+         userId
+).then((del) => {
         return res.status(200).send({
             message: 'Usuario eliminado correctamente'
         });
-    })
+    }).catch((error =>{
+        res.status(500).send({
+            message: error.message
+        });
+    }));
 }
 
 
