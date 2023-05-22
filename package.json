@@ -29,5 +29,6 @@
   "bugs": {
     "url": "https://github.com/IkerAbad/node_changeorg_api/issues"
   },
-  "homepage": "https://github.com/IkerAbad/node_changeorg_api#readme"
+  "homepage": "https://github.com/IkerAbad/node_changeorg_api#readme",
+  "keywords": []
 }
