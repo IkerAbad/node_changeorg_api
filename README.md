@@ -10,7 +10,7 @@ API REST en Node.js con Express y MongoDB (mayo de 2023, ciclo de DAM), pensada 
 - Modelos de Mongoose para `User`, `Peticion`, `Firma` y `Categoria`. Las rutas de peticiones y firmas no están escritas: en `app.js` están comentadas.
 - Colección de Postman en `postman/` con las llamadas de usuarios. Una de ellas tiene el cuerpo JSON mal formado.
 
-Hay que decir que el cliente [ionic_changeorg](https://github.com/IkerAbad/ionic_changeorg) llama a otras rutas (`/api/create-petition`, etc.) y al puerto 3000, así que este servidor no le sirve tal cual.
+Este servidor no es el que usa [ionic_changeorg](https://github.com/IkerAbad/ionic_changeorg): esa app llama a otras rutas (`/api/create-petition`, etc.) en el puerto 3000, que cubre [backend_ionic_changeorg](https://github.com/IkerAbad/backend_ionic_changeorg).
 
 ## Cómo arrancarlo
 
@@ -47,7 +47,7 @@ A REST API in Node.js with Express and MongoDB (May 2023, DAM vocational course)
 - Mongoose models for `User`, `Peticion`, `Firma` and `Categoria`. The petition and signature routes were never written: they are commented out in `app.js`.
 - A Postman collection in `postman/` with the user calls. One of them has a malformed JSON body.
 
-Note that the client [ionic_changeorg](https://github.com/IkerAbad/ionic_changeorg) calls different routes (`/api/create-petition`, etc.) on port 3000, so this server does not work with it as is.
+This is not the server [ionic_changeorg](https://github.com/IkerAbad/ionic_changeorg) uses: that app calls other routes (`/api/create-petition`, etc.) on port 3000, which [backend_ionic_changeorg](https://github.com/IkerAbad/backend_ionic_changeorg) covers.
 
 ## Running it
 
