@@ -1,10 +1,10 @@
 'use strict'
 var moongose = require('mongoose');
 var app = require('./app');
-var port = 3800;
+var port = process.env.PORT || 3800;
 //DB connections
 moongose.Promise = global.Promise;
-moongose.connect('mongodb://127.0.0.1:27017/node_changeorg', {
+moongose.connect(process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/node_changeorg', {
     useNewUrlParser: true
 })
     .then(() => {
